@@ -1,16 +1,12 @@
 # bn_website
+<br/>
+<br/>
+ Desktop Preview:
 
-A new Flutter project.
+![website-desktob](https://github.com/user-attachments/assets/4ddff6a2-4a95-4deb-8467-4c55976586c0)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+ Mobile Preview:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![website-mobile](https://github.com/user-attachments/assets/ffcc883a-540e-4e57-a1e6-6e44d9cd3956)
