@@ -406,6 +406,10 @@ class AppTheme{
 
 ThemeData themeData(BuildContext context) {
   return ThemeData(
+    scrollbarTheme:  ScrollbarThemeData(
+
+      thumbColor: WidgetStateProperty.all(Colors.black),
+    ),
     textTheme: const TextTheme(
       titleMedium:  TextStyle(
           color: Colors.black,

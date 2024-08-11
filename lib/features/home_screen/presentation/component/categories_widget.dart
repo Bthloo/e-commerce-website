@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesWidget extends StatelessWidget {
-  const CategoriesWidget({super.key,required this.categoriesKey});
-final GlobalKey categoriesKey;
+  const CategoriesWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      key: categoriesKey,
+
       children: [
         Row(
           children: [

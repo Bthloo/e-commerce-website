@@ -5,16 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'best_selling.dart';
 
 class ProductSection extends StatelessWidget {
-  const ProductSection({super.key,required this.productsKey});
-final GlobalKey productsKey;
+  const ProductSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
-      key: productsKey,
       children: [
-        SaleWidget(),
+        const  SaleWidget(),
         SizedBox(height: 20.h,),
-        BestSelling(),
+        const BestSelling(),
       ],
     );
   }

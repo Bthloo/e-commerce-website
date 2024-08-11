@@ -10,7 +10,7 @@ static const String routeName = 'view_all_screen';
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("عرض الكل"),
+        title: const Text("عرض الكل"),
       ),
       body: GridView.builder(
         itemCount: 10,

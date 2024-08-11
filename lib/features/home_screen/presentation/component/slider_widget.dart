@@ -9,8 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'featuer_layout_builder.dart';
 
 class SliderWidget extends StatefulWidget {
-  const SliderWidget({super.key,required this.globalKey});
-  final GlobalKey globalKey;
+  const SliderWidget({super.key});
+
   @override
   State<SliderWidget> createState() => _SliderWidgetState();
 }
@@ -22,7 +22,6 @@ class _SliderWidgetState extends State<SliderWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      key: widget.globalKey,
       width: double.infinity,
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,

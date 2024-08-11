@@ -6,12 +6,13 @@ import 'package:bn_website/features/home_screen/presentation/component/footer.da
 import 'package:bn_website/features/home_screen/presentation/component/product_section.dart';
 
 import 'package:bn_website/features/home_screen/presentation/component/slider_widget.dart';
+import 'package:bn_website/features/home_screen/presentation/pages/cart_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../component/best_selling.dart';
-import '../component/sale_wiget.dart';
+import '../component/befor_footer_widget.dart';
+
 
 
 class HomeScreen extends StatelessWidget {
@@ -35,6 +36,13 @@ final productsKey = GlobalKey();
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(CartScreen.routeName);
+                  },
+                  icon:const Icon(Icons.shopping_cart_outlined,color: Colors.white,size: 40,)
+              ),
+              SizedBox(height: 15.h,),
               TextButton(
                   onPressed: () {
                     Scrollable.ensureVisible(
@@ -139,8 +147,8 @@ final productsKey = GlobalKey();
       extendBodyBehindAppBar: false,
       body:Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: 1700,
+          constraints:  BoxConstraints(
+            maxWidth: 1700.w,
           ),
           child: CustomScrollView(
             controller: scrollController,
@@ -151,7 +159,13 @@ final productsKey = GlobalKey();
                   color: Colors.white,
                 ),
                 actions: MediaQuery.of(context).size.width >= 900 ?
-          [
+                   [
+                     IconButton(
+                         onPressed: () {
+                           Navigator.of(context).pushNamed(CartScreen.routeName);
+                         },
+                         icon: const Icon(Icons.shopping_cart_outlined)
+                     ),
                   TextButton(
                       onPressed: () {
                         Scrollable.ensureVisible(
@@ -253,13 +267,14 @@ final productsKey = GlobalKey();
                   child: Column(
                     children: [
                       SizedBox(height: 30.h,),
-                     CategoriesWidget(categoriesKey: categoriesKey),
+                     CategoriesWidget(key: categoriesKey),
                      SizedBox(height: 40.h,),
-                      SliderWidget(globalKey: sliderKey,),
+                      SliderWidget(key: sliderKey,),
                       SizedBox(height: 60.h,),
-                     ProductSection(productsKey: productsKey),
-                      SizedBox(height: 60.h,),
-                      Footer(footerKey: footerKey),
+                     ProductSection(key: productsKey),
+                      SizedBox(height: 80.h,),
+                    const BeforeFooterWidget(),
+                      Footer(key: footerKey),
 
                     ],
               )

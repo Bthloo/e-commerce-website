@@ -3,12 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({super.key,required this.footerKey});
-final GlobalKey footerKey;
+  const Footer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: footerKey,
       color: Colors.black,
       child:  Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -34,7 +33,7 @@ final GlobalKey footerKey;
                                   fontSize: 18.sp,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Text("نحن شركة عالمية تقدم خدمات الإلكترونيات والتكنولوجيا ونقدم أحدث وأرقى الأجهزة الإلكترونية المحمولة في الشرق الأوسط. نحن ملتزمون بتزويد العملاء بأفضل تجربة استثنائية من خلال التصميمات الدقيقة والتكنولوجيا الذكية والجودة العالية.",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -44,7 +43,7 @@ final GlobalKey footerKey;
                             ],
                           ),
                         ),
-                        SizedBox(width: 20),
+                        const SizedBox(width: 20),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: Column(
@@ -57,14 +56,14 @@ final GlobalKey footerKey;
                                   fontSize: 18.sp,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Text("نحن نقدم دعمًا فنيًا على مدار الساعة لجميع عملائنا. يمكنك الاتصال بنا في أي وقت للحصول على المساعدة في حالة وجود أي مشكلة أو استفسار.",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15.sp,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
 
                               Tooltip(
                                 triggerMode: TooltipTriggerMode.tap,
@@ -80,7 +79,7 @@ final GlobalKey footerKey;
                             ],
                           ),
                         ),
-                        SizedBox(width: 20),
+                        const SizedBox(width: 20),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: Column(
@@ -93,7 +92,7 @@ final GlobalKey footerKey;
                                   fontSize: 18.sp,
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               TextButton.icon(
                                   onPressed: () {
 
@@ -102,7 +101,7 @@ final GlobalKey footerKey;
                                   color: Colors.white,
                                   fontSize: 15.sp,
                                 ),),
-                                icon: Icon(Icons.facebook,color: Colors.white,),
+                                icon:const Icon(Icons.facebook,color: Colors.white,),
                               ),
                               TextButton.icon(
                                 onPressed: () {
@@ -112,7 +111,7 @@ final GlobalKey footerKey;
                                   color: Colors.white,
                                   fontSize: 15.sp,
                                 ),),
-                                icon: Icon(Icons.explore_outlined,color: Colors.white,),
+                                icon:const Icon(Icons.explore_outlined,color: Colors.white,),
                               ),
                             ],
                           ),
@@ -130,14 +129,14 @@ final GlobalKey footerKey;
                             fontSize: 18.sp,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const  SizedBox(height: 10),
                         Text("نحن شركة عالمية تقدم خدمات الإلكترونيات والتكنولوجيا ونقدم أحدث وأرقى الأجهزة الإلكترونية المحمولة في الشرق الأوسط. نحن ملتزمون بتزويد العملاء بأفضل تجربة استثنائية من خلال التصميمات الدقيقة والتكنولوجيا الذكية والجودة العالية.",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15.sp,
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Text(
                           'الدعم',
                           style: TextStyle(
@@ -145,14 +144,14 @@ final GlobalKey footerKey;
                             fontSize: 18.sp,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Text("نحن نقدم دعمًا فنيًا على مدار الساعة لجميع عملائنا. يمكنك الاتصال بنا في أي وقت للحصول على المساعدة في حالة وجود أي مشكلة أو استفسار.",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15.sp,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Tooltip(
                           onTriggered: () {
                             Clipboard.setData(const ClipboardData(text: "01111111111"));
@@ -164,7 +163,7 @@ final GlobalKey footerKey;
                             fontSize: 15.sp,
                           ),),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Text(
                           'التواصل الاجتماعي',
                           style: TextStyle(
@@ -172,7 +171,7 @@ final GlobalKey footerKey;
                             fontSize: 18.sp,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         TextButton.icon(
                           onPressed: () {
 
@@ -181,7 +180,7 @@ final GlobalKey footerKey;
                             color: Colors.white,
                             fontSize: 15.sp,
                           ),),
-                          icon: Icon(Icons.facebook,color: Colors.white,),
+                          icon:const Icon(Icons.facebook,color: Colors.white,),
                         ),
                         TextButton.icon(
                           onPressed: () {
@@ -191,7 +190,7 @@ final GlobalKey footerKey;
                             color: Colors.white,
                             fontSize: 15.sp,
                           ),),
-                          icon: Icon(Icons.explore_outlined,color: Colors.white,),
+                          icon:const Icon(Icons.explore_outlined,color: Colors.white,),
                         ),
                       ],
                     );

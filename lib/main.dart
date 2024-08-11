@@ -1,3 +1,4 @@
+import 'package:bn_website/features/home_screen/presentation/pages/cart_screen.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/home_screen.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/product_details_screen.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/view_all_screen.dart';
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
 
         routes: {
           HomeScreen.routeName: (context) =>  HomeScreen(),
-          ViewAllScreen.routeName: (context) =>  ViewAllScreen(),
+          ViewAllScreen.routeName: (context) =>  const ViewAllScreen(),
           ProductDetailsScreen.routeName: (context) =>  ProductDetailsScreen(),
+          CartScreen.routeName: (context) =>  CartScreen(),
         },
       ),
     );

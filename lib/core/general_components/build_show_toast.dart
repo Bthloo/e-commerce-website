@@ -8,8 +8,7 @@ Future<bool?> buildShowToast(String message) {
     msg: message,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-
+    timeInSecForIosWeb: 2,
     backgroundColor: ColorHelper.darkColor,
     textColor: Colors.white,
     fontSize: 15.0,
