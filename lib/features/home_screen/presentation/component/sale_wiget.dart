@@ -49,7 +49,13 @@ class SaleWidget extends StatelessWidget {
             itemCount: 10,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return  const ProductWidget();
+              return  const ProductWidget(
+                name: "شاحن انكر 30 وات",
+                description: "شاحن انكر 30 وات",
+                price: 100,
+                discount: 20,
+                imageUrl: "https://m.media-amazon.com/images/I/61J0-yvq5HL._AC_SL1500_.jpg",
+              );
             },
           ),
         )

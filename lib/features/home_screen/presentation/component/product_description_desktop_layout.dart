@@ -1,4 +1,4 @@
-import 'package:bn_website/features/home_screen/presentation/pages/cart_screen.dart';
+import 'package:bn_website/features/cart_screen/presentation/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

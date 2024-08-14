@@ -4,8 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductWidget extends StatelessWidget {
-   const ProductWidget({super.key});
-
+   const ProductWidget({
+     super.key,
+      required this.name,
+      required this.description,
+      required this.price,
+      required this.discount,
+      required this.imageUrl,
+   });
+   final String name;
+   final String description;
+   final String imageUrl;
+   final num price;
+   final num discount;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -40,7 +51,7 @@ class ProductWidget extends StatelessWidget {
                     ),
                   );
                 },
-                imageUrl: "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/Rectangle8.png?v=1690893875",
+                imageUrl: imageUrl,
                 height: 200.h,
                 width: 200.w,
                 fit: BoxFit.contain,
@@ -48,14 +59,14 @@ class ProductWidget extends StatelessWidget {
               ,
             ),
             SizedBox(height: 5.h,),
-            Text("شاحن انكر 30 وات",
+            Text(name,
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
             //SizedBox(height: 5.h,),
-            Text("250",
+            Text(price.toString(),
               style: TextStyle(
                 fontSize: 18.sp,
               ),

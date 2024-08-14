@@ -37,7 +37,7 @@ final String imageUrl;
             children: [
               Text(name,
                 style: TextStyle(
-                  fontSize: 25.sp,
+                  fontSize: 29.sp,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
@@ -45,7 +45,7 @@ final String imageUrl;
               SizedBox(height: 5.h,),
               Text(description,
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 22.sp,
                   color: Colors.white,
                   //fontWeight: FontWeight.bold,
                 ),
@@ -60,7 +60,7 @@ final String imageUrl;
                     padding: const EdgeInsets.all(10.0),
                     child: Text("اشتري الان",
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 19.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

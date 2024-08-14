@@ -2,7 +2,7 @@ import 'package:bn_website/features/home_screen/presentation/component/image_sli
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../pages/cart_screen.dart';
+import '../../../cart_screen/presentation/pages/cart_screen.dart';
 
 class ProductDetailsMobileLayout extends StatelessWidget {
    ProductDetailsMobileLayout({super.key});

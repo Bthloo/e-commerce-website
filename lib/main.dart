@@ -1,14 +1,19 @@
-import 'package:bn_website/features/home_screen/presentation/pages/cart_screen.dart';
+import 'package:bn_website/features/cart_screen/presentation/pages/cart_screen.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/home_screen.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/product_details_screen.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/view_all_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'core/themeing/theme_data.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -40,6 +45,7 @@ class MyApp extends StatelessWidget {
           ViewAllScreen.routeName: (context) =>  const ViewAllScreen(),
           ProductDetailsScreen.routeName: (context) =>  ProductDetailsScreen(),
           CartScreen.routeName: (context) =>  CartScreen(),
+
         },
       ),
     );

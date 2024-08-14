@@ -34,7 +34,7 @@ class CartDesktopLayout extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(specialProducts[index].name),
+                          Text(specialProducts[index].name??"No Name"),
                           const Text("X3"),
                           Text('${specialProducts[index].price} جنيه'),
                         ],
@@ -43,7 +43,7 @@ class CartDesktopLayout extends StatelessWidget {
                       CachedNetworkImage(
                         height: 70.w,
                         width: 70.w,
-                        imageUrl: specialProducts[index].imageUrl,
+                        imageUrl: specialProducts[index].imageUrl??"",
                       ),
                     ],
                   ),

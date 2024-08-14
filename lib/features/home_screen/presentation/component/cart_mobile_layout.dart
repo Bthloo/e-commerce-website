@@ -33,7 +33,7 @@ class CartMobileLayout extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(specialProducts[index].name),
+                        Text(specialProducts[index].name??"No Name"),
                         const Text("X3"),
                         Text('${specialProducts[index].price} جنيه'),
                       ],
@@ -42,7 +42,7 @@ class CartMobileLayout extends StatelessWidget {
                     CachedNetworkImage(
                       height: 70.w,
                       width: 70.w,
-                      imageUrl: specialProducts[index].imageUrl,
+                      imageUrl: specialProducts[index].imageUrl??"",
                     ),
                   ],
                 ),
@@ -103,115 +103,118 @@ class CartMobileLayout extends StatelessWidget {
 
                             child: Padding(
                               padding: const EdgeInsets.all(15.0),
-                              child: ListView(
-                                children: [
-                                  SizedBox(height: 20.h,),
-                                  TextButton.icon(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    label: const Text("الرجوع"),
-                                    icon: const Icon(Icons.close),
-                                  ),
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "الاسم كاملا",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الاسم";
-                                      }
-                                      return null;
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SizedBox(height: 20.h,),
+                                    TextButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      label: const Text("الرجوع"),
+                                      icon: const Icon(Icons.close),
+                                    ),
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "الاسم كاملا",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الاسم";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ),
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "رقم الهاتف",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الهاتف";
-                                      }
-                                      return null;
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ),
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "رقم الهاتف",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الهاتف";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ),
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "المحافظه",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الهاتف";
-                                      }
-                                      return null;
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ),
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "المحافظه",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الهاتف";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ),
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "المدينة",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الهاتف";
-                                      }
-                                      return null;
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ),
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "المدينة",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الهاتف";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ) ,
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "العنوان بالتفصيل",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الهاتف";
-                                      }
-                                      return null;
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ) ,
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "العنوان بالتفصيل",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الهاتف";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ),
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "علامه مميزه",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الهاتف";
-                                      }
-                                      return null;
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ),
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "علامه مميزه",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الهاتف";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ) ,
-                                  SizedBox(height: 20.h,),
-                                  CustomFormField(
-                                    hintText: "ملاحظات",
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return "الرجاء ادخال الهاتف";
-                                      }
-                                      return null;
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ) ,
+                                    SizedBox(height: 20.h,),
+                                    CustomFormField(
+                                      hintText: "ملاحظات",
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "الرجاء ادخال الهاتف";
+                                        }
+                                        return null;
 
-                                    },
-                                    controller: TextEditingController(),
-                                    isRTL: true,
-                                  ),
-                                  SizedBox(height: 30.h,),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text("تاكيد الطلب"),
-                                  ),
-                                ],
+                                      },
+                                      controller: TextEditingController(),
+                                      isRTL: true,
+                                    ),
+                                    SizedBox(height: 30.h,),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text("تاكيد الطلب"),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

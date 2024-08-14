@@ -12,8 +12,6 @@ class ThemeCubit extends Cubit<ThemeState> {
    bool? themeValue;
   static ThemeCubit get(context) => BlocProvider.of(context);
   changeTheme(ThemeStateEnum state)async{
-
-
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     switch(state){
       case ThemeStateEnum.initial:

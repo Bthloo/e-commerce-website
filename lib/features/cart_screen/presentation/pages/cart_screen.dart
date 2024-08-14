@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/general_components/color_helper.dart';
-import '../component/befor_footer_widget.dart';
-import '../component/footer.dart';
+import '../../../home_screen/presentation/component/befor_footer_widget.dart';
+import '../../../home_screen/presentation/component/footer.dart';
 
 class CartScreen extends StatelessWidget {
    CartScreen({super.key});

@@ -31,9 +31,9 @@ class _SliderWidgetState extends State<SliderWidget> {
                 itemCount: specialProducts.length,
                 itemBuilder: (context, index, realIndex) {
                   return FeatureLayoutBuilder(
-                    name: specialProducts[index].name,
-                    description: specialProducts[index].description,
-                    imageUrl: specialProducts[index].imageUrl,
+                    name: specialProducts[index].name??"No Name",
+                    description: specialProducts[index].description??"No Description",
+                    imageUrl: specialProducts[index].imageUrl??"",
                   );
                 },
                 options: CarouselOptions(
