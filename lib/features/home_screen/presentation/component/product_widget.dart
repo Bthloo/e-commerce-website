@@ -35,8 +35,9 @@ class ProductWidget extends StatelessWidget {
               height: 200.h,
               width: 200.w,
               decoration: BoxDecoration(
-                // borderRadius: BorderRadius.circular(10.r),
-                color: Colors.grey.shade200,
+                 borderRadius: BorderRadius.circular(10.r),
+               color: Colors.grey[200],
+               // color: Colors.black.withOpacity(0.9),
               ),
               child: CachedNetworkImage(
                 errorWidget: (context, url, error) {

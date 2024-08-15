@@ -13,7 +13,7 @@ class ProductSection extends StatelessWidget {
       children: [
         const  SaleWidget(),
         SizedBox(height: 20.h,),
-        const BestSelling(),
+         BestSelling(),
       ],
     );
   }

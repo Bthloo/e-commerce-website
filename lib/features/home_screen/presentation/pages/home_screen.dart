@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bn_website/core/firebase/my_database.dart';
 import 'package:bn_website/core/general_components/color_helper.dart';
 import 'package:bn_website/features/home_screen/data/models/ProductModel.dart';
@@ -5,17 +7,14 @@ import 'package:bn_website/features/home_screen/domain/entity/product_entity.dar
 import 'package:bn_website/features/home_screen/presentation/component/categories_widget.dart';
 import 'package:bn_website/features/home_screen/presentation/component/footer.dart';
 import 'package:bn_website/features/home_screen/presentation/component/product_section.dart';
-import 'package:bn_website/features/home_screen/presentation/component/product_widget.dart';
 
 import 'package:bn_website/features/home_screen/presentation/component/slider_widget.dart';
 import 'package:bn_website/features/cart_screen/presentation/pages/cart_screen.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../component/befor_footer_widget.dart';
-import '../cubit/get_products_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -116,23 +115,35 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          hoverElevation: 0,
-          elevation: 0,
-          backgroundColor: ColorHelper.mainColor.withAlpha(150),
-          foregroundColor: Colors.white.withAlpha(150),
-          hoverColor: ColorHelper.mainColor,
-          tooltip: 'Go up',
-          onPressed: () {
-            scrollController.animateTo(
-              0.0,
-              curve: Curves.easeOut,
-              duration: const Duration(milliseconds: 500),
-            );
-          },
-          child: const Icon(
-            Icons.arrow_upward,
-            color: Colors.white,
+        floatingActionButton: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+            child: FloatingActionButton(
+
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              hoverElevation: 0,
+              elevation: 0,
+              backgroundColor: ColorHelper.mainColor.withOpacity(.5),
+              //ColorHelper.mainColor.withAlpha(150),
+              foregroundColor: Colors.white.withAlpha(150),
+              hoverColor: ColorHelper.mainColor,
+              tooltip: 'Go up',
+              onPressed: () {
+                scrollController.animateTo(
+                  0.0,
+                  curve: Curves.easeOut,
+                  duration: const Duration(milliseconds: 500),
+                );
+              },
+              child: const Icon(
+                size: 30,
+                Icons.arrow_upward,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
         extendBodyBehindAppBar: false,
@@ -143,6 +154,7 @@ class HomeScreen extends StatelessWidget {
           ),
           child: CustomScrollView(controller: scrollController, slivers: [
             SliverAppBar(
+              toolbarHeight: 70.h,
               iconTheme: const IconThemeData(
                 color: Colors.white,
               ),
@@ -222,7 +234,7 @@ class HomeScreen extends StatelessWidget {
               //  ),
               centerTitle: false,
               title: Text(
-                "Electronic Store",
+                "Watt's up",
                 style: TextStyle(
                   fontFamily: "Cairo",
                   fontSize: 30.sp,
@@ -233,117 +245,114 @@ class HomeScreen extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
                   child: Column(
                     children: [
+                      // SizedBox(
+                      //   height: 30.h,
+                      // ),
+                      // ElevatedButton(
+                      //     onPressed: () async {
+                      //
+                      //       List<ProductModel> products = [];
+                      //
+                      //        // Fetch the best-selling products collection
+                      //       var bestSell = await MyDatabase.getBestSellCollecton().get();
+                      //
+                      //     // Use Future.wait to perform all asynchronous operations concurrently
+                      //       products = await Future.wait(
+                      //         bestSell.docs.map((element) async {
+                      //           // Fetch each product by URL and return it
+                      //           var product = await MyDatabase.getProductsByURL(path: element.data().productURL!);
+                      //           return product!;
+                      //         }).toList(),
+                      //       );
+                      //
+                      //         // Optionally, print out the names of the products
+                      //       for (var product in products) {
+                      //         debugPrint(product.name);
+                      //         debugPrint(product.description);
+                      //         debugPrint(product.price.toString());
+                      //        // debugPrint(product.toJson().toString());
+                      //       }
+                      //
+                      //
+                      //      //  List<String> urls= [];
+                      //      //  List<ProductModel> products = [];
+                      //      //  var getBestSell =  MyDatabase.getBestSellCollecton();
+                      //      // var bestSell = await getBestSell.get();
+                      //      // for (var element in bestSell.docs) {
+                      //      //   urls.add(element.data().productURL!);
+                      //      //  var product = await MyDatabase.getProductsByURL(path: element.data().productURL!);
+                      //      //  products.add(product!);
+                      //      // }
+                      //      //
+                      //      // for (var element in products) {
+                      //      //   print(element.name);
+                      //      // }
+                      //
+                      //     },
+                      //     child: const Text("data")
+                      // ),
                       SizedBox(
-                        height: 30.h,
+                        height: 10.h,
                       ),
-                      ElevatedButton(
-                          onPressed: () async {
 
-                            List<ProductModel> products = [];
-
-                             // Fetch the best-selling products collection
-                            var bestSell = await MyDatabase.getBestSellCollecton().get();
-
-                          // Use Future.wait to perform all asynchronous operations concurrently
-                            products = await Future.wait(
-                              bestSell.docs.map((element) async {
-                                // Fetch each product by URL and return it
-                                var product = await MyDatabase.getProductsByURL(path: element.data().productURL!);
-                                return product!;
-                              }).toList(),
-                            );
-
-                              // Optionally, print out the names of the products
-                            for (var product in products) {
-                              debugPrint(product.name);
-                              debugPrint(product.description);
-                              debugPrint(product.price.toString());
-                             // debugPrint(product.toJson().toString());
-                            }
-
-
-                           //  List<String> urls= [];
-                           //  List<ProductModel> products = [];
-                           //  var getBestSell =  MyDatabase.getBestSellCollecton();
-                           // var bestSell = await getBestSell.get();
-                           // for (var element in bestSell.docs) {
-                           //   urls.add(element.data().productURL!);
-                           //  var product = await MyDatabase.getProductsByURL(path: element.data().productURL!);
-                           //  products.add(product!);
-                           // }
-                           //
-                           // for (var element in products) {
-                           //   print(element.name);
-                           // }
-                           
-                          },
-                          child: const Text("data")
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      CategoriesWidget(key: categoriesKey),
-                      SizedBox(
-                        height: 40.h,
-                      ),
                       SliderWidget(
                         key: sliderKey,
                       ),
                       SizedBox(
                         height: 60.h,
                       ),
+                      CategoriesWidget(key: categoriesKey),
+                      SizedBox(
+                        height: 40.h,
+                      ),
                       ProductSection(key: productsKey),
                       SizedBox(
                         height: 80.h,
                       ),
                       const BeforeFooterWidget(),
-                      SizedBox(
-                        height: 80.h,
-                      ),
-                      SizedBox(
-                        height: 500.h,
-                          width: double.infinity,
-                          child: BlocProvider(
-                        create: (context) => GetProductsCubit()..getProducts(),
-                        child: BlocBuilder<GetProductsCubit, GetProductsState>(
-                          builder: (context, state) {
-                            if (state is GetProductsSuccess) {
-                              return ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: state.products.length,
-                                itemBuilder: (context, index) {
-                                  return ProductWidget(
-                                    name: state.products[index].name!,
-                                    description:
-                                        state.products[index].description!,
-                                    imageUrl: state.products[index].imageUrl!,
-                                    price: state.products[index].price!,
-                                    discount: state.products[index].discount!,
-                                  );
-                                },
-                              );
-                            } else if (state is GetProductsLoading) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else if (state is GetProductsError) {
-                              return Center(
-                                child: Text(state.error),
-                              );
-                            } else {
-                              return const Center(
-                                child: Text("Unknown State"),
-                              );
-                            }
-                          },
-                        ),
-                      )),
-                      SizedBox(
-                        height: 80.h,
-                      ),
+
+                      // SizedBox(
+                      //   height: 500.h,
+                      //     width: double.infinity,
+                      //     child: BlocProvider(
+                      //   create: (context) => GetProductsCubit()..getProducts(),
+                      //   child: BlocBuilder<GetProductsCubit, GetProductsState>(
+                      //     builder: (context, state) {
+                      //       if (state is GetProductsSuccess) {
+                      //         return ListView.builder(
+                      //           scrollDirection: Axis.horizontal,
+                      //           itemCount: state.products.length,
+                      //           itemBuilder: (context, index) {
+                      //             return ProductWidget(
+                      //               name: state.products[index].name!,
+                      //               description:
+                      //                   state.products[index].description!,
+                      //               imageUrl: state.products[index].imageUrl!,
+                      //               price: state.products[index].price!,
+                      //               discount: state.products[index].discount!,
+                      //             );
+                      //           },
+                      //         );
+                      //       } else if (state is GetProductsLoading) {
+                      //         return const Center(
+                      //           child: CircularProgressIndicator(),
+                      //         );
+                      //       } else if (state is GetProductsError) {
+                      //         return Center(
+                      //           child: Text(state.error),
+                      //         );
+                      //       } else {
+                      //         return const Center(
+                      //           child: Text("Unknown State"),
+                      //         );
+                      //       }
+                      //     },
+                      //   ),
+                      // )),
+
                       Footer(key: footerKey),
                     ],
                   )),

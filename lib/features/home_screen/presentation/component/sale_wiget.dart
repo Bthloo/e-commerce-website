@@ -54,7 +54,7 @@ class SaleWidget extends StatelessWidget {
                 description: "شاحن انكر 30 وات",
                 price: 100,
                 discount: 20,
-                imageUrl: "https://m.media-amazon.com/images/I/61J0-yvq5HL._AC_SL1500_.jpg",
+                imageUrl: "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/5_5659124f-7fbd-4f6b-868c-91db272a4f6c.png?v=1718964539",
               );
             },
           ),

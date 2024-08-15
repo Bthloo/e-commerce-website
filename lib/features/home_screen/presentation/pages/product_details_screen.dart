@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/general_components/color_helper.dart';
+import '../../../cart_screen/presentation/pages/cart_screen.dart';
 import '../component/befor_footer_widget.dart';
 import '../component/footer.dart';
 import '../component/product_details_layout.dart';
@@ -29,6 +30,18 @@ static const String routeName = "product-details";
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(CartScreen.routeName);
+                    },
+                    icon: const Icon(
+                      Icons.shopping_cart_outlined,
+                      color: Colors.white,
+                      size: 40,
+                    )),
+                SizedBox(
+                  height: 15.h,
+                ),
                 TextButton(
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
@@ -145,6 +158,12 @@ static const String routeName = "product-details";
                 floating: true,
                 actions: MediaQuery.of(context).size.width >= 900 ?
                 [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(CartScreen.routeName);
+                      },
+                      icon: const Icon(Icons.shopping_cart_outlined)),
                   TextButton(
                       onPressed: () {
                         Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);

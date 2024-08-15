@@ -6,6 +6,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/general_components/color_helper.dart';
 import 'featuer_layout_builder.dart';
 
 class SliderWidget extends StatefulWidget {
@@ -24,7 +25,7 @@ class _SliderWidgetState extends State<SliderWidget> {
     return SizedBox(
       width: double.infinity,
       child: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
+        alignment: AlignmentDirectional.center,
           children: [
             CarouselSlider.builder(
               carouselController: carouselController,
@@ -44,6 +45,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   },
                   autoPlay: true,
                   enlargeCenterPage: false,
+
                   enableInfiniteScroll: true,
                   viewportFraction: 1,
                   height: MediaQuery.of(context).size.height - 100.h,
@@ -93,6 +95,54 @@ class _SliderWidgetState extends State<SliderWidget> {
                   ),
                 ),
               ),
+            ),
+            Positioned(
+
+                right: 20,
+                child: ClipOval(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
+                    child: IconButton.filled(
+                      color: Colors.transparent,
+                      style: ButtonStyle(
+                          iconSize:WidgetStatePropertyAll(30.r) ,
+                          backgroundColor: WidgetStatePropertyAll(Colors.white.withOpacity(.2))
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          carouselController.previousPage();
+
+
+                        });
+                      },
+                      icon: const Icon(Icons.arrow_back,color: Colors.white,),
+                    ),
+                  ),
+                )
+            ),
+            Positioned(
+
+                left: 20,
+                child: ClipOval(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
+                    child: IconButton.filled(
+                      color: Colors.transparent,
+                      style: ButtonStyle(
+                          iconSize:WidgetStatePropertyAll(30.r) ,
+                        backgroundColor: WidgetStatePropertyAll(Colors.white.withOpacity(.2))
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          carouselController.nextPage();
+
+
+                        });
+                      },
+                      icon: const Icon(Icons.arrow_forward,color: Colors.white,),
+                    ),
+                  ),
+                )
             ),
           ]
       ),

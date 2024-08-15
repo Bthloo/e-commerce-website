@@ -24,6 +24,18 @@ final GlobalKey footerKey = GlobalKey();
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(CartScreen.routeName);
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart_outlined,
+                    color: Colors.white,
+                    size: 40,
+                  )),
+              SizedBox(
+                height: 15.h,
+              ),
               TextButton(
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
@@ -102,6 +114,12 @@ final GlobalKey footerKey = GlobalKey();
                 ),
                 actions: MediaQuery.of(context).size.width >= 900 ?
                 [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed(CartScreen.routeName);
+                      },
+                      icon: const Icon(Icons.shopping_cart_outlined)),
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed(HomeScreen.routeName);

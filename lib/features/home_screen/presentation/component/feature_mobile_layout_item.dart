@@ -16,7 +16,14 @@ class FeatureMobileLayoutItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
     width: double.infinity,
-      color: Colors.black,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        image: DecorationImage(
+          image: CachedNetworkImageProvider(imageUrl),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.85), BlendMode.darken),
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:bn_website/features/home_screen/presentation/pages/product_details_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,9 +26,20 @@ final String imageUrl;
   @override
   Widget build(BuildContext context) {
     return  Container(
-      color: Colors.black,
+      //color: Colors.black,
       height: 400.h,
       width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.black,
+       image: DecorationImage(
+
+         image: CachedNetworkImageProvider(imageUrl),
+         fit: BoxFit.cover,
+         colorFilter:
+         //ImageFilter.blur(sigmaX: 5, sigmaY: 5)
+         ColorFilter.mode(Colors.black.withOpacity(0.85), BlendMode.darken),
+       ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,6 +48,7 @@ final String imageUrl;
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(name,
                 style: TextStyle(
@@ -54,7 +69,7 @@ final String imageUrl;
               ElevatedButton(
 
                   onPressed: () {
-
+                    Navigator.of(context).pushNamed(ProductDetailsScreen.routeName);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
