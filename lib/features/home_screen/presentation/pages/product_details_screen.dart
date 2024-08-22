@@ -1,3 +1,4 @@
+import 'package:bn_website/features/home_screen/domain/entity/product_entity.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,8 +23,104 @@ static const String routeName = "product-details";
 
   @override
   Widget build(BuildContext context) {
+    final ProductEntity product = ModalRoute.of(context)!.settings.arguments as ProductEntity;
     return  Scaffold(
       key: scaffoldKey,
+        appBar: AppBar(
+          centerTitle: false,
+          title:  Text(
+            "Electronic Store",
+            style:  TextStyle(
+              fontFamily: "Cairo",
+              fontSize: 30.sp,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+
+          ),
+          actions: MediaQuery.of(context).size.width >= 900 ?
+          [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(CartScreen.routeName);
+                },
+                icon: const Icon(Icons.shopping_cart_outlined)),
+            TextButton(
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+                },
+                child: Text("الرئيسية",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp
+                  ),)
+            ),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(
+                      productKey.currentContext!,
+                      duration: const Duration(seconds: 1)
+                  );
+                },
+                child:  Text("عن المنتج",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp
+
+                  ),)
+            ),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(
+                      productsKey.currentContext!,
+                      duration: const Duration(seconds: 1)
+                  );
+                },
+                child: Text("قد يعجبك ايضا",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp
+
+                  ),)
+            ),
+
+
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(
+                      footerKey.currentContext!,
+                      duration: const Duration(seconds: 1)
+                  );
+                },
+                child: Text("التواصل",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp
+
+                  ),)
+            ),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(
+                      footerKey.currentContext!,
+                      duration: const Duration(seconds: 1)
+                  );
+                },
+                child: Text("من نحن",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.sp
+                  ),)
+            ),
+
+          ] : null,
+
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: Colors.black,
+          // pinned: true,
+
+        ),
         endDrawer: Drawer(
           child: Center(
             child: Column(
@@ -138,134 +235,32 @@ static const String routeName = "product-details";
         ),
         extendBodyBehindAppBar: false,
       body: Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 1700.w),
-          child: CustomScrollView(
-              controller: scrollController,
-            slivers: [
-              SliverAppBar(
-                centerTitle: false,
-                title:  Text(
-                  "Electronic Store",
-                  style:  TextStyle(
-                    fontFamily: "Cairo",
-                    fontSize: 30.sp,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+        child: Padding(
+               padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+               child: ListView(
+                 controller: scrollController,
 
-                ),
-                floating: true,
-                actions: MediaQuery.of(context).size.width >= 900 ?
-                [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .pushNamed(CartScreen.routeName);
-                      },
-                      icon: const Icon(Icons.shopping_cart_outlined)),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
-                      },
-                      child: Text("الرئيسية",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp
-                        ),)
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Scrollable.ensureVisible(
-                            productKey.currentContext!,
-                            duration: const Duration(seconds: 1)
-                        );
-                      },
-                      child:  Text("عن المنتج",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp
+                 children: [
 
-                        ),)
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Scrollable.ensureVisible(
-                            productsKey.currentContext!,
-                            duration: const Duration(seconds: 1)
-                        );
-                      },
-                      child: Text("قد يعجبك ايضا",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp
+                   ProductDetailsLayout(
+                     product: product,
+                     key: productKey,
+                   ),
 
-                        ),)
-                  ),
+                //   SizedBox(height: 80.h,),
+                   // SectionWidget(
+                   //   key: productsKey,
+                   // ),
+                   SizedBox(height: 80.h,),
+                   const BeforeFooterWidget(),
+                   Footer(
+                     key:  footerKey,
+                   ),
+                 ],
+               ),
 
+             )
 
-                  TextButton(
-                      onPressed: () {
-                        Scrollable.ensureVisible(
-                            footerKey.currentContext!,
-                            duration: const Duration(seconds: 1)
-                        );
-                      },
-                      child: Text("التواصل",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp
-
-                        ),)
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Scrollable.ensureVisible(
-                            footerKey.currentContext!,
-                            duration: const Duration(seconds: 1)
-                        );
-                      },
-                      child: Text("من نحن",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.sp
-                        ),)
-                  ),
-
-                ] : null,
-
-                surfaceTintColor: Colors.transparent,
-                backgroundColor: Colors.black,
-               // pinned: true,
-
-              ),
-               SliverToBoxAdapter(
-                child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
-                  child: Column(
-                    children: [
-
-                      ProductDetailsLayout(
-                        productKey: productKey,
-                      ),
-
-                      SizedBox(height: 80.h,),
-                      SectionWidget(
-                        key: productsKey,
-                      ),
-                      SizedBox(height: 80.h,),
-                      const BeforeFooterWidget(),
-                      Footer(
-                        key:  footerKey,
-                      ),
-                    ],
-                  ),
-
-                ),
-               )
-          ]
-          ),
-        ),
       )
     );
 

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:bn_website/core/firebase/my_database.dart';
 import 'package:bn_website/core/general_components/color_helper.dart';
-import 'package:bn_website/features/home_screen/data/models/ProductModel.dart';
 import 'package:bn_website/features/home_screen/domain/entity/product_entity.dart';
 import 'package:bn_website/features/home_screen/presentation/component/categories_widget.dart';
 import 'package:bn_website/features/home_screen/presentation/component/footer.dart';
@@ -14,6 +13,7 @@ import 'package:bn_website/features/cart_screen/presentation/pages/cart_screen.d
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/general_components/search_bar.dart';
 import '../component/befor_footer_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,8 +29,117 @@ class HomeScreen extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    String text = "Anker Charger 30 W";
+
+    // Convert text to lowercase to handle case-insensitive substrings
+    text = text.toLowerCase();
+
+    // Remove spaces from the text if you want continuous substrings
+   // text = text.replaceAll(' ', '');
+
+    List<String> substrings = [];
+
+    // Generate progressive substrings
+    for (int i = 1; i <= text.length; i++) {
+      substrings.add(text.substring(0, i));
+    }
+
+    // Print the result
+    print(substrings);
     return Scaffold(
+
         key: scaffoldKey,
+        appBar: AppBar(
+          centerTitle: false,
+          title: Row(
+            children: [
+              Text(
+                "Watt Hub",
+                style: TextStyle(
+                  fontFamily: "Cairo",
+                  fontSize: 30.sp,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
+              IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: ProductSearch(context));
+                  },
+                  icon: Icon(Icons.search)
+              )
+            ],
+          ),
+          toolbarHeight: 70.h,
+          iconTheme: const IconThemeData(
+            color: Colors.white,
+          ),
+          actions: MediaQuery.of(context).size.width >= 900
+              ? [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed(CartScreen.routeName);
+                },
+                icon: const Icon(Icons.shopping_cart_outlined)),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(
+                      categoriesKey.currentContext!,
+                      duration: const Duration(seconds: 1));
+                },
+                child: Text(
+                  "التصنيفات",
+                  style:
+                  TextStyle(color: Colors.white, fontSize: 18.sp),
+                )),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(sliderKey.currentContext!,
+                      duration: const Duration(seconds: 1));
+                },
+                child: Text(
+                  "المميزة",
+                  style:
+                  TextStyle(color: Colors.white, fontSize: 18.sp),
+                )),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(
+                      productsKey.currentContext!,
+                      duration: const Duration(seconds: 1));
+                },
+                child: Text(
+                  "المنتجات",
+                  style:
+                  TextStyle(color: Colors.white, fontSize: 18.sp),
+                )),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(footerKey.currentContext!,
+                      duration: const Duration(seconds: 1));
+                },
+                child: Text(
+                  "التواصل",
+                  style:
+                  TextStyle(color: Colors.white, fontSize: 18.sp),
+                )),
+            TextButton(
+                onPressed: () {
+                  Scrollable.ensureVisible(footerKey.currentContext!,
+                      duration: const Duration(seconds: 1));
+                },
+                child: Text(
+                  "من نحن",
+                  style:
+                  TextStyle(color: Colors.white, fontSize: 18.sp),
+                )),
+          ]
+              : null,
+        ),
         endDrawer: Drawer(
           child: Center(
             child: Column(
@@ -148,217 +257,43 @@ class HomeScreen extends StatelessWidget {
         ),
         extendBodyBehindAppBar: false,
         body: Center(
-            child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 1700.w,
-          ),
-          child: CustomScrollView(controller: scrollController, slivers: [
-            SliverAppBar(
-              toolbarHeight: 70.h,
-              iconTheme: const IconThemeData(
-                color: Colors.white,
-              ),
-              actions: MediaQuery.of(context).size.width >= 900
-                  ? [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.of(context)
-                                .pushNamed(CartScreen.routeName);
-                          },
-                          icon: const Icon(Icons.shopping_cart_outlined)),
-                      TextButton(
-                          onPressed: () {
-                            Scrollable.ensureVisible(
-                                categoriesKey.currentContext!,
-                                duration: const Duration(seconds: 1));
-                          },
-                          child: Text(
-                            "التصنيفات",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18.sp),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            Scrollable.ensureVisible(sliderKey.currentContext!,
-                                duration: const Duration(seconds: 1));
-                          },
-                          child: Text(
-                            "المميزة",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18.sp),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            Scrollable.ensureVisible(
-                                productsKey.currentContext!,
-                                duration: const Duration(seconds: 1));
-                          },
-                          child: Text(
-                            "المنتجات",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18.sp),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            Scrollable.ensureVisible(footerKey.currentContext!,
-                                duration: const Duration(seconds: 1));
-                          },
-                          child: Text(
-                            "التواصل",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18.sp),
-                          )),
-                      TextButton(
-                          onPressed: () {
-                            Scrollable.ensureVisible(footerKey.currentContext!,
-                                duration: const Duration(seconds: 1));
-                          },
-                          child: Text(
-                            "من نحن",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 18.sp),
-                          )),
-                    ]
-                  : null,
-              floating: true,
-              surfaceTintColor: Colors.transparent,
-              backgroundColor: Colors.black,
-              // backgroundColor: Colors.transparent,
-              //  flexibleSpace: ClipRect(
-              //    child: BackdropFilter(
-              //        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              //        child: Container(
-              //            color:  Colors.transparent
-              //        )
-              //    ),
-              //  ),
-              centerTitle: false,
-              title: Text(
-                "Watt's up",
-                style: TextStyle(
-                  fontFamily: "Cairo",
-                  fontSize: 30.sp,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
+            child: Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
-                  child: Column(
-                    children: [
-                      // SizedBox(
-                      //   height: 30.h,
-                      // ),
-                      // ElevatedButton(
-                      //     onPressed: () async {
-                      //
-                      //       List<ProductModel> products = [];
-                      //
-                      //        // Fetch the best-selling products collection
-                      //       var bestSell = await MyDatabase.getBestSellCollecton().get();
-                      //
-                      //     // Use Future.wait to perform all asynchronous operations concurrently
-                      //       products = await Future.wait(
-                      //         bestSell.docs.map((element) async {
-                      //           // Fetch each product by URL and return it
-                      //           var product = await MyDatabase.getProductsByURL(path: element.data().productURL!);
-                      //           return product!;
-                      //         }).toList(),
-                      //       );
-                      //
-                      //         // Optionally, print out the names of the products
-                      //       for (var product in products) {
-                      //         debugPrint(product.name);
-                      //         debugPrint(product.description);
-                      //         debugPrint(product.price.toString());
-                      //        // debugPrint(product.toJson().toString());
-                      //       }
-                      //
-                      //
-                      //      //  List<String> urls= [];
-                      //      //  List<ProductModel> products = [];
-                      //      //  var getBestSell =  MyDatabase.getBestSellCollecton();
-                      //      // var bestSell = await getBestSell.get();
-                      //      // for (var element in bestSell.docs) {
-                      //      //   urls.add(element.data().productURL!);
-                      //      //  var product = await MyDatabase.getProductsByURL(path: element.data().productURL!);
-                      //      //  products.add(product!);
-                      //      // }
-                      //      //
-                      //      // for (var element in products) {
-                      //      //   print(element.name);
-                      //      // }
-                      //
-                      //     },
-                      //     child: const Text("data")
-                      // ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
+                  child: SingleChildScrollView(
+                    controller: scrollController,
 
-                      SliderWidget(
-                        key: sliderKey,
-                      ),
-                      SizedBox(
-                        height: 60.h,
-                      ),
-                      CategoriesWidget(key: categoriesKey),
-                      SizedBox(
-                        height: 40.h,
-                      ),
-                      ProductSection(key: productsKey),
-                      SizedBox(
-                        height: 80.h,
-                      ),
-                      const BeforeFooterWidget(),
+                    child: Column(
 
-                      // SizedBox(
-                      //   height: 500.h,
-                      //     width: double.infinity,
-                      //     child: BlocProvider(
-                      //   create: (context) => GetProductsCubit()..getProducts(),
-                      //   child: BlocBuilder<GetProductsCubit, GetProductsState>(
-                      //     builder: (context, state) {
-                      //       if (state is GetProductsSuccess) {
-                      //         return ListView.builder(
-                      //           scrollDirection: Axis.horizontal,
-                      //           itemCount: state.products.length,
-                      //           itemBuilder: (context, index) {
-                      //             return ProductWidget(
-                      //               name: state.products[index].name!,
-                      //               description:
-                      //                   state.products[index].description!,
-                      //               imageUrl: state.products[index].imageUrl!,
-                      //               price: state.products[index].price!,
-                      //               discount: state.products[index].discount!,
-                      //             );
-                      //           },
-                      //         );
-                      //       } else if (state is GetProductsLoading) {
-                      //         return const Center(
-                      //           child: CircularProgressIndicator(),
-                      //         );
-                      //       } else if (state is GetProductsError) {
-                      //         return Center(
-                      //           child: Text(state.error),
-                      //         );
-                      //       } else {
-                      //         return const Center(
-                      //           child: Text("Unknown State"),
-                      //         );
-                      //       }
-                      //     },
-                      //   ),
-                      // )),
+                      children: [
+                        SizedBox(
+                          height: 10.h,
+                        ),
 
-                      Footer(key: footerKey),
-                    ],
-                  )),
-            ),
-          ]),
-        )));
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: SliderWidget(
+                            key: sliderKey,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 60.h,
+                        ),
+                        CategoriesWidget(key: categoriesKey),
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        ProductSection(key: productsKey),
+                        SizedBox(
+                          height: 80.h,
+                        ),
+                        const BeforeFooterWidget(),
+
+
+
+                        Footer(key: footerKey),
+                      ],
+                    ),
+                  ))));
   }
 }
 

@@ -10,7 +10,6 @@ part 'get_products_state.dart';
 
 class GetProductsCubit extends Cubit<GetProductsState> {
   GetProductsCubit() : super(GetProductsInitial());
-  List<ProductModel> products = [];
   getProducts() async {
     emit(GetProductsLoading());
     HomeScreenRepoImpl homeScreenRepoImpl = HomeScreenRepoImpl(remoteDataSource: HomeScreenDataSource());
@@ -22,6 +21,7 @@ class GetProductsCubit extends Cubit<GetProductsState> {
               (r) => emit(GetProductsSuccess(r))
 
       );
+
 
 
 

@@ -1,12 +1,12 @@
 class GetProductURL{
-  String? productURL;
-  GetProductURL({this.productURL});
+  String? path;
+  GetProductURL({this.path});
   GetProductURL.fromJson(Map<String, dynamic>? json){
-    productURL = json?['productUrl'];
+    path = json?['path'];
   }
   Map<String, dynamic> toJson(){
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['productUrl'] = productURL;
+    data['path'] = path;
     return data;
   }
 

@@ -1,13 +1,6 @@
 import '../../../home_screen/data/models/ProductModel.dart';
-import '../../../home_screen/domain/entity/product_entity.dart';
 import '../../domain/entities/cart_entity.dart';
 
-/// userName : "Bassel"
-/// userPhone : "01113794"
-/// userAddress : "fdofud"
-/// productPrice : 2849
-/// totalPrice : 58696
-/// ProductsEntity : [{"fdfd":"fdf"},{"fdfdf5":"yty"}]
 
 class CartModel extends CartEntity {
   CartModel({

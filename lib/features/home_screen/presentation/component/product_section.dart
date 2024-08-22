@@ -11,9 +11,9 @@ class ProductSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const  SaleWidget(),
+       // const  SaleWidget(),
         SizedBox(height: 20.h,),
-         BestSelling(),
+        // BestSelling(),
       ],
     );
   }

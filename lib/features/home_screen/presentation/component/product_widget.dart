@@ -1,3 +1,4 @@
+import 'package:bn_website/features/home_screen/domain/entity/product_entity.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/product_details_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -6,39 +7,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductWidget extends StatelessWidget {
    const ProductWidget({
      super.key,
-      required this.name,
-      required this.description,
-      required this.price,
-      required this.discount,
-      required this.imageUrl,
+      required this.product,
+     this.id
    });
-   final String name;
-   final String description;
-   final String imageUrl;
-   final num price;
-   final num discount;
+   final ProductEntity product;
+   final String? id;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(ProductDetailsScreen.routeName);
+        Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,arguments: product);
       },
 
     // hoverColor:  ColorHelper.mainColor,
-      child: Tooltip(
-        message: "شاحن انكر 30 وات",
-
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 200.h,
-              width: 200.w,
-              decoration: BoxDecoration(
-                 borderRadius: BorderRadius.circular(10.r),
-               color: Colors.grey[200],
-               // color: Colors.black.withOpacity(0.9),
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 200.h,
+            width: 200.w,
+            decoration: BoxDecoration(
+               borderRadius: BorderRadius.circular(10.r),
+             color: Colors.grey[200],
+             // color: Colors.black.withOpacity(0.9),
+            ),
+            child: Hero(
+              tag: product.id!,
               child: CachedNetworkImage(
                 errorWidget: (context, url, error) {
                   return const Center(
@@ -52,28 +46,30 @@ class ProductWidget extends StatelessWidget {
                     ),
                   );
                 },
-                imageUrl: imageUrl,
+                imageUrl: product.imageUrl??'',
                 height: 200.h,
                 width: 200.w,
                 fit: BoxFit.contain,
-              )
-              ,
-            ),
-            SizedBox(height: 5.h,),
-            Text(name,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
               ),
+            )
+            ,
+          ),
+          SizedBox(height: 5.h,),
+          Text(
+            product.name??'',
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
             ),
-            //SizedBox(height: 5.h,),
-            Text(price.toString(),
-              style: TextStyle(
-                fontSize: 18.sp,
-              ),
+          ),
+          //SizedBox(height: 5.h,),
+          Text(
+            product.price.toString(),
+            style: TextStyle(
+              fontSize: 18.sp,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

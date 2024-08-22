@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bn_website/features/home_screen/domain/entity/product_entity.dart';
 import 'package:bn_website/features/home_screen/presentation/pages/product_details_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -8,21 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class FeatureDesktopLayoutItem extends StatelessWidget {
   const FeatureDesktopLayoutItem({
     super.key,
-    required this.name,
-    required this.description,
-    required this.imageUrl,
-   // required this.price,
-   // required this.discount,
-  //required this.tags,
-  //  required this.quantity,
+    required this.product,
   });
-final String name;
-final String description;
-final String imageUrl;
-//final String price;
-//final String discount;
-//final String tags;
-//final int quantity;
+final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -33,7 +22,7 @@ final String imageUrl;
         color: Colors.black,
        image: DecorationImage(
 
-         image: CachedNetworkImageProvider(imageUrl),
+         image: CachedNetworkImageProvider(product.imageUrl!),
          fit: BoxFit.cover,
          colorFilter:
          //ImageFilter.blur(sigmaX: 5, sigmaY: 5)
@@ -50,7 +39,8 @@ final String imageUrl;
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(name,
+              Text(
+                product.name!,
                 style: TextStyle(
                   fontSize: 29.sp,
                   color: Colors.white,
@@ -58,7 +48,8 @@ final String imageUrl;
                 ),
               ),
               SizedBox(height: 5.h,),
-              Text(description,
+              Text(
+                product.description!,
                 style: TextStyle(
                   fontSize: 22.sp,
                   color: Colors.white,
@@ -69,7 +60,7 @@ final String imageUrl;
               ElevatedButton(
 
                   onPressed: () {
-                    Navigator.of(context).pushNamed(ProductDetailsScreen.routeName);
+                    Navigator.of(context).pushNamed(ProductDetailsScreen.routeName,arguments: product);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
@@ -106,22 +97,26 @@ final String imageUrl;
                       ],
                     ),
                   ),
-                  CachedNetworkImage(
-                    errorWidget: (context, url, error) {
-                      return const Center(
-                        child: Text("حدث خطأ في تحميل الصورة"),
-                      );
-                    },
-                    progressIndicatorBuilder: (context, url, progress) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: progress.progress,
-                        ),
-                      );
-                    },
+                  Hero(
+                    tag: product.id!,
+                    child: CachedNetworkImage(
 
-                    imageUrl: imageUrl,
-                    fit: BoxFit.contain,
+                      errorWidget: (context, url, error) {
+                        return const Center(
+                          child: Text("حدث خطأ في تحميل الصورة"),
+                        );
+                      },
+                      progressIndicatorBuilder: (context, url, progress) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: progress.progress,
+                          ),
+                        );
+                      },
+
+                      imageUrl: product.imageUrl!,
+                      fit: BoxFit.contain,
+                    ),
                   )
                 ],
               ),

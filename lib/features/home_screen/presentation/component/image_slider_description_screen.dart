@@ -7,8 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageSliderDescriptionScreen extends StatefulWidget {
-  const ImageSliderDescriptionScreen({super.key});
-
+  const ImageSliderDescriptionScreen({
+    super.key,
+     this.images,
+    this.oneImage,
+    required this.id
+  });
+final List<String>? images;
+final String? oneImage;
+final String id;
   @override
   State<ImageSliderDescriptionScreen> createState() => _ImageSliderDescriptionScreenState();
 }
@@ -19,87 +26,77 @@ CarouselSliderController carouselController = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return widget.images!.isEmpty ?
+    Hero(
+      tag: widget.id,
+      child: CarouselSlider(
+        options: CarouselOptions(
+          viewportFraction: 1,
+          height: MediaQuery.of(context).size.height - 100.h,
+
+          //enlargeStrategy: CenterPageEnlargeStrategy.height,
+        ),
+        items: [
+          CachedNetworkImage(
+            imageUrl: widget.oneImage!,
+            errorWidget: (context, url, error) {
+              return const Center(
+                child: Text("حدث خطأ في تحميل الصورة"),
+              );
+            },
+            progressIndicatorBuilder: (context, url, progress) {
+              return Center(
+                child: CircularProgressIndicator(
+                  value: progress.progress,
+                ),
+              );
+            },
+          )
+        ],
+      ),
+    ) :
+
+      Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
-        CarouselSlider(
-          carouselController: carouselController,
-            items: [
-              CachedNetworkImage(
-                  imageUrl: "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/5_5659124f-7fbd-4f6b-868c-91db272a4f6c.png?v=1718964539",
-                errorWidget: (context, url, error) {
-                  return const Center(
-                    child: Text("حدث خطأ في تحميل الصورة"),
-                  );
+        Hero(
+          tag: widget.id,
+          child: CarouselSlider.builder(
+            itemCount: widget.images?.length,
+            carouselController: carouselController,
+             itemBuilder: (context, index, realIndex) {
+               return  CachedNetworkImage(
+                 imageUrl: widget.images?[index]?? widget.oneImage!,
+                 errorWidget: (context, url, error) {
+                   return const Center(
+                     child: Text("حدث خطأ في تحميل الصورة"),
+                   );
+                 },
+                 progressIndicatorBuilder: (context, url, progress) {
+                   return Center(
+                     child: CircularProgressIndicator(
+                       value: progress.progress,
+                     ),
+                   );
+                 },
+               );
+             },
+              options: CarouselOptions(
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    currentIndex = index;
+                  });
                 },
-                progressIndicatorBuilder: (context, url, progress) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: progress.progress,
-                    ),
-                  );
-                },
-              ),
-              CachedNetworkImage(
-                imageUrl: "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/5_5659124f-7fbd-4f6b-868c-91db272a4f6c.png?v=1718964539",
-                errorWidget: (context, url, error) {
-                  return const Center(
-                    child: Text("حدث خطأ في تحميل الصورة"),
-                  );
-                },
-                progressIndicatorBuilder: (context, url, progress) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: progress.progress,
-                    ),
-                  );
-                },
-              ),
-              CachedNetworkImage(
-                imageUrl: "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/5_5659124f-7fbd-4f6b-868c-91db272a4f6c.png?v=1718964539",
-                errorWidget: (context, url, error) {
-                  return const Center(
-                    child: Text("حدث خطأ في تحميل الصورة"),
-                  );
-                },
-                progressIndicatorBuilder: (context, url, progress) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: progress.progress,
-                    ),
-                  );
-                },
-              ),
-              CachedNetworkImage(
-                imageUrl: "https://cdn.shopify.com/s/files/1/0493/9834/9974/files/5_5659124f-7fbd-4f6b-868c-91db272a4f6c.png?v=1718964539",
-                errorWidget: (context, url, error) {
-                  return const Center(
-                    child: Text("حدث خطأ في تحميل الصورة"),
-                  );
-                },
-                progressIndicatorBuilder: (context, url, progress) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: progress.progress,
-                    ),
-                  );
-                },
-              )
-            ],
-            options: CarouselOptions(
-              onPageChanged: (index, reason) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-              autoPlay: true,
-              enlargeCenterPage: false,
-              enableInfiniteScroll: true,
-              viewportFraction: 1,
-              height: MediaQuery.of(context).size.height - 100.h,
+                autoPlay: true,
+                enlargeCenterPage: false,
+                enableInfiniteScroll: true,
 
-              //enlargeStrategy: CenterPageEnlargeStrategy.height,
-            )
+                viewportFraction: 1,
+                height: MediaQuery.of(context).size.height - 100.h,
+
+                //enlargeStrategy: CenterPageEnlargeStrategy.height,
+              )
+          ),
         ),
         Positioned(
           bottom: 20.h,
@@ -116,7 +113,7 @@ CarouselSliderController carouselController = CarouselSliderController();
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: DotsIndicator(
-                  dotsCount: 4,
+                  dotsCount: widget.images!.length,
                   position: currentIndex,
                   onTap: (index) {
                     carouselController.animateToPage(index);

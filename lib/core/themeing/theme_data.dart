@@ -406,8 +406,13 @@ class AppTheme{
 
 ThemeData themeData(BuildContext context) {
   return ThemeData(
+    bannerTheme: const MaterialBannerThemeData(
+      backgroundColor: Colors.white,
+    ),
     scrollbarTheme:  ScrollbarThemeData(
-
+       interactive: true,
+      trackColor: WidgetStateProperty.all(Colors.grey),
+      trackVisibility:  WidgetStateProperty.all(true),
       thumbColor: WidgetStateProperty.all(Colors.black),
     ),
     textTheme: const TextTheme(

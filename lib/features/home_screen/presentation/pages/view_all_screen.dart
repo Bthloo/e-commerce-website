@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../component/product_widget.dart';
-
 class ViewAllScreen extends StatelessWidget {
   const ViewAllScreen({super.key});
 static const String routeName = 'view_all_screen';
@@ -24,7 +22,7 @@ static const String routeName = 'view_all_screen';
 
           ),
           itemBuilder: (context, index) {
-          return Center();
+          return const Center();
            // return const Center(child: ProductWidget());
           }
           ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/themeing/theme_data.dart';
+import 'features/home_screen/presentation/pages/products_in_category_screen.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: themeData(context),
+
         initialRoute: HomeScreen.routeName,
         debugShowCheckedModeBanner: false,
         locale: const Locale('ar'),
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
           ViewAllScreen.routeName: (context) =>  const ViewAllScreen(),
           ProductDetailsScreen.routeName: (context) =>  ProductDetailsScreen(),
           CartScreen.routeName: (context) =>  CartScreen(),
+          ProductsInCategoryScreen.routeName: (context) =>   ProductsInCategoryScreen(),
 
         },
       ),

@@ -2,21 +2,28 @@ import 'package:bn_website/features/home_screen/presentation/component/product_d
 import 'package:bn_website/features/home_screen/presentation/component/product_details_mobile_layout.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../domain/entity/product_entity.dart';
+
 class ProductDetailsLayout extends StatelessWidget {
   const ProductDetailsLayout({
     super.key,
-    required this.productKey,
+    required this.product
   });
-final GlobalKey productKey;
+
+final ProductEntity product;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      key: productKey,
         builder: (context, constraints) {
           if(constraints.maxWidth >= 900){
-            return ProductDescriptionDesktopLayout();
+            return ProductDescriptionDesktopLayout(
+              product: product,
+            );
           }else{
-            return ProductDetailsMobileLayout();
+            return ProductDetailsMobileLayout(
+              product: product,
+
+            );
           }
         },
     );
